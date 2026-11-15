@@ -31,4 +31,5 @@ crash.log
 *.tfplan
 
 # Internal use
-business_analysis/
+learning_artifacts/
+.github/
