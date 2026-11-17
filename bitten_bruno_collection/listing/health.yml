@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://127.0.0.1:8002/health
+  url: "{{listing_servie_url}}/health"
   auth: inherit
 
 settings:

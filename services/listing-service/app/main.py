@@ -1,6 +1,5 @@
 from fastapi import FastAPI, HTTPException
 import httpx
-import os
 from app.config import Settings
 
 settings = Settings()
@@ -11,15 +10,15 @@ http_timeout_seconds = float(settings.http_timeout_seconds)
 app = FastAPI()
 
 
-@app.get("/health")
+@app.get("/api/v1/health")
 def health_check() -> dict[str, str]:
     return {"status": "ok", "service": "listing-service"}
 
-@app.get("/catalog-health")
+@app.get("/api/v1/catalog-health")
 async def catalog_health_check() -> dict[str, str]:
     async with httpx.AsyncClient(timeout=http_timeout_seconds) as client:
         try:
-            response = await client.get(f"{catalog_service_url}health")
+            response = await client.get(f"{catalog_service_url}api/v1/health")
             response.raise_for_status()
         except httpx.ConnectError:
             raise HTTPException(status_code=503, detail="Catalog service unavailable")

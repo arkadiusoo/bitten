@@ -1,0 +1,8 @@
+name: bitten-dev
+variables:
+  - name: catalog_service_url
+    value: http://127.0.0.1:8001/api/v1
+    description: ""
+  - name: listing_servie_url
+    value: http://127.0.0.1:8002/api/v1
+    description: ""
