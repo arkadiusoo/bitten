@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{listing_servie_url}}/catalog-health"
+  url: "{{listing_servie_url}}/health/catalog"
   auth: inherit
 
 settings:
