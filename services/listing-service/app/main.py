@@ -16,9 +16,9 @@ def health_check() -> dict[str, str]:
 
 @app.get("/api/v1/catalog-health")
 async def catalog_health_check() -> dict[str, str]:
-    async with httpx.AsyncClient(timeout=http_timeout_seconds) as client:
+    async with httpx.AsyncClient(timeout=http_timeout_seconds, base_url=catalog_service_url) as client:
         try:
-            response = await client.get(f"{catalog_service_url}api/v1/health")
+            response = await client.get("api/v1/health")
             response.raise_for_status()
         except httpx.ConnectError:
             raise HTTPException(status_code=503, detail="Catalog service unavailable")
